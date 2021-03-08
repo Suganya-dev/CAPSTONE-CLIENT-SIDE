@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
-import Logo from "./event.jpeg"
+// import Logo from "./event.jpeg"
 
 export const NavBar = () => {
   const history = useHistory()
@@ -9,7 +9,7 @@ export const NavBar = () => {
   return (
     <ul className="navbar">
       <li className="navbar__item">
-        <img className="navbar__logo" src={Logo} />
+        {/* <img className="navbar__logo" src={Logo} /> */}
       </li>
       <li className="navbar__item">
         <Link className="navbar__link" to="/">

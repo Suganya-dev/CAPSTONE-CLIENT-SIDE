@@ -1,5 +1,5 @@
 import React from "react"
-import { Route } from "react-router-dom"
+// import { Route } from "react-router-dom"
 
 export const ApplicationViews = () => {
     return (
@@ -11,8 +11,6 @@ export const ApplicationViews = () => {
         }}
       ></main>
 
-        <Route exact path="/">
-            <Home />
-        </Route>
+
       </>
     )}
