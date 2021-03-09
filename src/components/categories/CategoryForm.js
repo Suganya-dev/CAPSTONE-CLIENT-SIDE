@@ -7,7 +7,7 @@ export const CategoryForm = (props) => {
 
     const editMode = props.match.params.hasOwnProperty("categoryId")
 
-    console.log(props)
+    // console.log(props)
 
     const handleControlledInputChange = (event) => {
         /*
