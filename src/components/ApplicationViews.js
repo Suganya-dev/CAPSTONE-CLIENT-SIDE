@@ -9,7 +9,26 @@ export const ApplicationViews = () => {
           margin: "5rem 2rem",
           lineHeight: "1.75rem",
         }}
-      ></main>
+      >
+              <CategoryProvider>
+                    <Route
+                      exact
+                      path="/categories"
+                      render={(props) => <CategoryList {...props} />}
+                    />
+
+                    <Route
+                      exact
+                      path="/categories/create"
+                      render={(props) => <CategoryForm {...props} />}
+                    />
+                    <Route
+                      path="/categories/edit/:categoryId(\d+)"
+                      render={(props) => <CategoryForm {...props} />}
+                    />
+                </CategoryProvider>
+
+      </main>
 
 
       </>
