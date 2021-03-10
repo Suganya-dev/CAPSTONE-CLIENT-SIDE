@@ -12,7 +12,7 @@ export const CategoryList = (props) => {
     return (
         <>
             <div className="row">
-            <h1>Categories</h1>
+            <h1>CATEGORIES</h1>
                 <button onClick={() => {
                     props.history.push(`/categories/create`)
                 }}>Create a new category
