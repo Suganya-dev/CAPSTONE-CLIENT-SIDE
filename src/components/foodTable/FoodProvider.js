@@ -19,7 +19,7 @@ export const FoodtableProvider = (props) =>{
         return fetch("http://localhost:8000/foodtypes",{
             method: "POST",
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("event_user_id")}`
             },
             body: JSON.stringify(foodtype)
