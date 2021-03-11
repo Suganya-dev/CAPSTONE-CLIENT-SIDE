@@ -18,13 +18,13 @@ export const CategoryList = (props) => {
                 }}>Create a new category
                 </button>
                 <div className="column">
+                    
                     {categories
-                    // .filter(c => c.userId === userId)
                     .map(category => {
-                            return <Category key={category.id} 
-                            category={category} props={props} 
+                        return <Category key={category.id} 
+                        category={category} props={props} 
                         
-                            />
+                    />
                     })
                     }
                 </div>

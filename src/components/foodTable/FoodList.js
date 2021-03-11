@@ -8,7 +8,7 @@ export const FoodList =(props) =>{
     useEffect(() =>{
         getFoodtype()
     },[])
-
+    console.log(foodtypes)
     return (
         <>
           <div className ="row">
@@ -16,11 +16,12 @@ export const FoodList =(props) =>{
             <button onClick = {() => {
                 props.history.push(`/foodtypes/create`)
             }}> Create a new foodtype </button>
+
             <div className = "column">
-                {foodtypes .map (ft =>{
-                    return <Foodtype key={ft.id}
-                    foodtypes ={ft} props={props}
-                    />
+                {foodtypes.map(ft =>{
+                return <Foodtype key={ft.id}
+                foodtypes={ft} props={props}
+                />
 
                 })}
             </div>

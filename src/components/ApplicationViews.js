@@ -5,6 +5,10 @@ import { CategoryList } from "./categories/CategoryList"
 import { CategoryForm } from "./categories/CategoryForm"
 import {FoodtableProvider} from "./foodTable/FoodProvider"
 import {FoodList} from "./foodTable/FoodList"
+import {FoodtypeForm} from "./foodTable/FoodForm"
+import {FoodTableProvider} from "./foodTabless/FoodtableProvider"
+import {FoodTable} from "./foodTabless/FoodtableList"
+
 
 export const ApplicationViews = () => {
     return (
@@ -41,6 +45,36 @@ export const ApplicationViews = () => {
                       render={(props) => <FoodList {...props} />}
                     />
 
+                <Route
+                      exact
+                      path="/foodtypes/create"
+                      render={(props) => <FoodtypeForm {...props} />}
+                    />
+
+                <Route
+                      path="/foodtypes/edit/:foodtypeId(\d+)"
+                      render={(props) => <FoodtypeForm {...props} />}
+                    />
+                </FoodtableProvider>
+
+                <FoodtableProvider>
+                <FoodTableProvider>
+                <Route
+                      exact
+                      path="/foodtables"
+                      render={(props) => <FoodTable {...props} />}
+                    />
+                      <Route
+                      exact
+                      path="/foodtables/create"
+                      render={(props) => <FoodtypeForm {...props} />}
+                    />
+
+                    <Route
+                      path="/foodtables/edit/:foodtypeId(\d+)"
+                      render={(props) => <FoodtypeForm {...props} />}
+                    />
+                </FoodTableProvider>
                 </FoodtableProvider>
 
       </main>

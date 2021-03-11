@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { CategoryContext } from "./CategoryProvider"
 
 export const CategoryForm = (props) => {
+    // props - package of info sending with components history,loc,match
+    //  just the info we are passing from one compo to other.
     const { categories, addCategory, getCategories, updateCategory  } = useContext(CategoryContext)
     const [category, setCategory] = useState({})
-
+  
+    // if it has ID then editmode, or create mode
+     // it just returns true or false
     const editMode = props.match.params.hasOwnProperty("categoryId")
 
     // console.log(props)
@@ -14,6 +18,7 @@ export const CategoryForm = (props) => {
             When changing a state object or array, always create a new one
             and change state instead of modifying current one
         */
+    //    creates a new category with same properties of category & sets that value = to changes in the form
         const newCategory = Object.assign({}, category)
         newCategory[event.target.name] = event.target.value
         setCategory(newCategory)
@@ -21,16 +26,18 @@ export const CategoryForm = (props) => {
 
     const getCategoryInEditMode = () => {
         if (editMode) {
+           
             const categoryId = parseInt(props.match.params.categoryId)
+            // getting the id and finding the object 
             const selectedCategory = categories.find(c => c.id === categoryId) || {}
             setCategory(selectedCategory)
         }
     }
-
+//    empty array renders on second render
     useEffect(() => {
         getCategories()
     }, [])
-
+    // once you have categories,it will renders
     useEffect(() => {
         getCategoryInEditMode()
     }, [categories])

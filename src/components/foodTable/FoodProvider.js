@@ -15,7 +15,7 @@ export const FoodtableProvider = (props) =>{
         .then(setFoodtypes)
     }
 
-    const addFoodtype = (foodtype) =>{
+    const addFoodtype = foodtype =>{
         return fetch("http://localhost:8000/foodtypes",{
             method: "POST",
             headers:{
@@ -27,16 +27,17 @@ export const FoodtableProvider = (props) =>{
         .then(getFoodtype)
     }
 
-    const removeFoodtype = (foodtypeId) =>{
+    const removeFoodtype = foodtypeId =>{
         return fetch(`http://localhost:8000/foodtypes/${foodtypeId}`,{
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("event_user_id")}`
             }
         })
+        .then(getFoodtype)
     }
 
-    const updateFoodtype = (foodtype) =>{
+    const updateFoodtype = foodtype =>{
         return fetch(`http://localhost:8000/foodtypes/${foodtype.id}`, {
             method: "PUT",
             headers: {
