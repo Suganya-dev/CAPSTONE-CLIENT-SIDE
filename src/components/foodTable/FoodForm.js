@@ -11,6 +11,7 @@ export const FoodtypeForm = (props) => {
         const newFoodtype =  Object.assign({}, foodtype)
         newFoodtype[event.target.name] = event.target.value
         setFoodtype(newFoodtype)
+        // console.log(foodtype)
     }
 
     const getFoodtypeInEditMode = () =>{
@@ -33,13 +34,13 @@ export const FoodtypeForm = (props) => {
         if(editMode){
             updateFoodtype({
             id: foodtype.id,
-            label: foodtype.label
+            label: foodtype.foodTypes
             })
-
+//  keyerror = whatever i am giving in name field in fieldset should use same key value
             .then(() => props.history.push("/foodtypes"))
         }else{
             addFoodtype({
-                label :foodtype.label
+                label :foodtype.foodTypes
             })
              .then(() => props.history.push("/foodtypes"))
             
