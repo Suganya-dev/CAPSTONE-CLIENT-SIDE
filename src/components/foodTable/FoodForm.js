@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {FoodtypeContext} from "./FoodProvider"
 
 export const FoodtypeForm = (props) => {
-    const {foodtypes, getFoodtype,addFoodtype,removeFoodtype,updateFoodtype} = useContext(FoodtypeContext)
+    const {foodtypes, getFoodtype,addFoodtype,updateFoodtype} = useContext(FoodtypeContext)
     const [foodtype, setFoodtype] = useState([])
 
     const editMode = props.match.params.hasOwnProperty("foodtypeId")
@@ -16,11 +16,11 @@ export const FoodtypeForm = (props) => {
     const getFoodtypeInEditMode = () =>{
         if(editMode){
             const foodtypeId = parseInt(props.match.params.foodtypeId)
-            selectedFoodtype = foodtypes.find(f => f.id === foodtypeId) || {}
+            const selectedFoodtype = foodtypes.find(f => f.id === foodtypeId) || {}
             setFoodtype(selectedFoodtype)
         }
     }
-
+  
     useEffect(() =>{
         getFoodtype()
     },[])
@@ -33,19 +33,19 @@ export const FoodtypeForm = (props) => {
         if(editMode){
             updateFoodtype({
             id: foodtype.id,
-            foodTypes: foodtype.foodTypes
+            label: foodtype.label
             })
 
             .then(() => props.history.push("/foodtypes"))
         }else{
             addFoodtype({
-                foodTypes :foodtype.foodTypes
+                label :foodtype.label
             })
              .then(() => props.history.push("/foodtypes"))
             
         }
     }
-
+    // console.log(foodType)
     return(
         <form className="foodtypeForm">
         <h2 className="foodtypeForm__title">{editMode ? "Update Foodtype" : "Add Foodtype"}</h2>
@@ -55,7 +55,7 @@ export const FoodtypeForm = (props) => {
                 <input type="text" name="foodTypes" required autoFocus className="form-control"
                     proptype="varchar"
                     placeholder="Add text"
-                    defaultValue={foodtype.foodTypes}
+                    defaultValue={foodtype.label}
                     onChange={handleControlledInputChange}
                 />
             </div>

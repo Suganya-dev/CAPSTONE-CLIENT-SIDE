@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 
 // component responsible for rendering a single foodtype
 
-export const Foodtype = ({foodtype}) =>{
+export const Foodtype = ({foodtypes}) =>{
     const {removeFoodtype} = useContext(FoodtypeContext)
     const history = useHistory()
 
@@ -15,19 +15,19 @@ export const Foodtype = ({foodtype}) =>{
         }
     }
 
-    return(<section className ="foodtype">
-    <div className = "foodtype __label">
-        {foodtype.foodTypes}
+    return(<section className ="foodtypes">
+    <div className = "foodtypes__label">
+        {foodtypes.label}
     </div>
     <button onClick ={
         () => {
-            confirmDelete(foodtype.id)
+            confirmDelete(foodtypes.id)
         }
     }>
         Delete 
     </button>
     <button onClick ={ () =>{
-        history.push(`/foodtypes/edit/${foodtype.id}`)
+        history.push(`/foodtypes/edit/${foodtypes.id}`)
     }} >
         Edit
     </button>
