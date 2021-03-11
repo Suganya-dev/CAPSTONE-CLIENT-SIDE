@@ -32,8 +32,13 @@ export const NavBar = () => {
         </Link>
       </li>
       <li className="navbar__item">
-        <Link className="navbar__link" to="/foodtypes">
+        <Link className="navbar__link" to="/foodtables">
           Food Table
+        </Link>
+      </li>
+      <li className="navbar__item">
+        <Link className="navbar__link" to="/foodtypes">
+          Food Types
         </Link>
       </li>
       <li className="navbar__item">
