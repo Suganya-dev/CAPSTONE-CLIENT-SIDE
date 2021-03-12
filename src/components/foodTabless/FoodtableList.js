@@ -1,9 +1,11 @@
 import React, {useContext, useEffect, useState} from "react"
+import { useHistory } from "react-router-dom"
 import {FoodTableContext} from "./FoodtableProvider"
 import {Foodtable} from "./Foodtable"
 
 export const FoodTable = (props) =>{
     const{foodtable, getFoodtable} = useContext(FoodTableContext)
+    const history = useHistory()
 
     useEffect(() =>{
         getFoodtable()
