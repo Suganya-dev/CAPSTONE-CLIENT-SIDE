@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, useEffect } from "react"
+import React, { useContext,useState, useEffect } from "react"
 import { FoodTableContext } from "./FoodtableProvider"
 import { FoodtypeContext } from "../foodTable/FoodProvider"
 import { useHistory } from "react-router-dom"
@@ -7,40 +7,60 @@ import { useHistory } from "react-router-dom"
 export const Foodtableform = (props) =>{
     const history = useHistory()
     
-    const{foodtable,getFoodtable,getSinglefoodTable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
+    const{foodtable,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
     const{foodtypes,getFoodtype} = useContext(FoodtypeContext)
-    
-    const[foodtable,setFoodtable] = useState({
+     console.log(foodtypes)
+
+     const editMode = props.match.params.hasOwnProperty("foodtablesId")
+
+    const[foodtables,setFoodtables] = useState({
         label: "",
         description: "",
         foodType: 0,
     })
 
-    useEffect(() => {
-        if("foodtableId" in props.match.params){
-            getSinglefoodTable(props.match.params.foodtableId).then((fT =>{
-                setFoodtable({
-                    label: fT.label,
-                    description: fT.description,
-                    foodType: fT.foodType,
-                })
-            }))
-        }
-    }, [props.match.params.foodtableId])
+    const getFoodtableInEditMode = () => {
+    
+        const foodtablesId = parseInt(props.match.params.foodtablesId)
+        const selectedFoodtable = foodtable.find(a => a.id === foodtablesId) || {}
+        setFoodtables(selectedFoodtable)
+    }
 
     useEffect(() => {
         getFoodtype()
       }, [])
+
+    useEffect(() =>{
+        getFoodtableInEditMode()
+    },[foodtable])
 
         /*
   Update the `Foodtable` state variable every time
   the state of one of the input fields changes.
   */
   const changeFoodtableState = (domEvent) => {
-    const newFoodtableState = Object.assign({}, foodtable)
+    const newFoodtableState = Object.assign({}, foodtables)
     newFoodtableState[domEvent.target.name] = domEvent.target.value
-    setFoodtable(newFoodtableState)
+    setFoodtables(newFoodtableState)
   }
+
+  const constructNewFoodtable = () =>{
+    const foodtableId = parseInt(props.match.params.foodtableId)
+    if(foodtableId === 0){
+    addFoodtable(foodtables)
+    .then(()=>props.history.push("/foodtables"))
+    }else{
+        updateFoodtable({
+            label:foodtables.label,
+            description:foodtables.description,
+            // foodtype:foodtables.foodtypes.label
+        })
+
+        .then(() => props.history.push(`/foodtables/edit/${foodtable.id}`))
+
+    }}
+
+
 
   return (
     <form className="PostForm">
@@ -51,10 +71,11 @@ export const Foodtableform = (props) =>{
           <input
             type="text"
             name="label"
+            id="label"
             required
             autoFocus
             className="form-control"
-            value={fT.label}
+            defaultValue={foodtables.label}
             onChange={changeFoodtableState}
           />
         </div>
@@ -62,13 +83,14 @@ export const Foodtableform = (props) =>{
 
       <fieldset>
         <div className="form-group">
-          <label htmlFor="content">Description: </label>
+          <label htmlFor="description">Description: </label>
           <input
             type="text"
             name="description"
+            id="description"
             required
             className="form-control"
-            value={ fT.description}
+            defaultValue={ foodtables.description}
             onChange={changeFoodtableState}
           />
         </div>
@@ -76,24 +98,36 @@ export const Foodtableform = (props) =>{
 
       <fieldset>
         <div className="form-group">
-          <label htmlFor="content">Foodtype: </label>
-          <input
+          <label htmlFor="foodType">Foodtype: </label>
+          {/* foodtypes&& this will wait untill data comes and then it renders */}
+          {foodtypes&&
+            <select
             type="text"
             name="foodType"
+            id="foodType"
             required
             className="form-control"
-            value={fT.foodType}
+            defaultValue={1}
             onChange={changeFoodtableState}
-          />
-          { foodtypes.map ((fT) => {
+            >
+                {/* (paranthesis means single line function, no return) */}
+                {/* {curly braces multi line fn, needs return } */}
+                {/* drop down list(mapping) */}
+          { foodtypes.map ((fT) => (
+            //   {console.log(fT.label)}
               <option key={fT.id} value ={fT.id}>
                   {fT.label}
               </option>
-
-          })
-        }
+            ))
+        } 
+        </select> }
         </div>
       </fieldset>
+
+      <button type="submit"  onClick={evt => {
+                evt.preventDefault()
+                constructNewFoodtable()
+            }}>Submit</button>
       </form>
   )    
 }

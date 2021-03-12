@@ -8,6 +8,7 @@ import {FoodList} from "./foodTable/FoodList"
 import {FoodtypeForm} from "./foodTable/FoodForm"
 import {FoodTableProvider} from "./foodTabless/FoodtableProvider"
 import {FoodTable} from "./foodTabless/FoodtableList"
+import {Foodtableform} from "./foodTabless/FoodtableForm"
 
 
 export const ApplicationViews = () => {
@@ -67,12 +68,12 @@ export const ApplicationViews = () => {
                       <Route
                       exact
                       path="/foodtables/create"
-                      render={(props) => <FoodtypeForm {...props} />}
+                      render={(props) => <Foodtableform {...props} />}
                     />
 
                     <Route
                       path="/foodtables/edit/:foodtypeId(\d+)"
-                      render={(props) => <FoodtypeForm {...props} />}
+                      render={(props) => <Foodtableform {...props} />}
                     />
                 </FoodTableProvider>
                 </FoodtableProvider>
