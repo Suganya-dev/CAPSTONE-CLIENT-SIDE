@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { FoodTableContext } from "../foodTabless/FoodtableProvider"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 // component responsible for rendering a single foodtable
 
@@ -22,11 +22,14 @@ return(
         <div> description: {foodtable.description} </div>
         <div>Label: {foodtable.foodType.label}</div>
 
-        <button onClick={() => {
+        {/* <button onClick={() => {
                 history.push(`/foodtables/edit/${foodtable.id}`)
             }}>Edit
-        </button>
-
+        </button> */}
+        <Link 
+        to= {{pathname:`/foodtables/edit/${foodtable.id}`,state:{choosentable:foodtable}}}> 
+        Edit </Link>
+        
         <button onClick={
                 () => {
                     confirmDelete(foodtable.id) 

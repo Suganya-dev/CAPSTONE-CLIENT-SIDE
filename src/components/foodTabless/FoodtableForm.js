@@ -45,8 +45,8 @@ export const Foodtableform = (props) =>{
   }
 
   const constructNewFoodtable = () =>{
-    const foodtableId = parseInt(props.match.params.foodtableId)
-    if(foodtableId === 0){
+    const editMode = parseInt(props.match.params.foodtableId)
+    if(!editMode){
     addFoodtable(foodtables)
     .then(()=>props.history.push("/foodtables"))
     }else{
@@ -60,7 +60,10 @@ export const Foodtableform = (props) =>{
 
     }}
 
-
+// i got this path from props.
+    console.log(props)
+    const Foodlabel = props.location.state.choosentable
+    // console.log(Foodlabel)
 
   return (
     <form className="PostForm">
@@ -75,7 +78,7 @@ export const Foodtableform = (props) =>{
             required
             autoFocus
             className="form-control"
-            defaultValue={foodtables.label}
+            defaultValue={Foodlabel.label}
             onChange={changeFoodtableState}
           />
         </div>
@@ -90,7 +93,7 @@ export const Foodtableform = (props) =>{
             id="description"
             required
             className="form-control"
-            defaultValue={ foodtables.description}
+            defaultValue={Foodlabel.description}
             onChange={changeFoodtableState}
           />
         </div>
