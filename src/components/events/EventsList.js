@@ -1,11 +1,12 @@
 import React, {useContext, useEffect} from "react"
-import {EventContext} from "./PostProvider"
+import {EventContext} from "./EventsProvider"
 import { Link } from "react-router-dom"
+import {Event} from "./Event"
 
 export const EventsList =(props) =>{
     const{events,getEventsByUserId} = useContext(EventContext)
 
-    useeffect (() =>{
+    useEffect (() =>{
         getEventsByUserId()
     },[])
 

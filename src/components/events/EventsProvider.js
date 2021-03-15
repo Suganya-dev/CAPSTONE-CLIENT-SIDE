@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import { EventContext } from "../events/EventsProvider"
+
 
 export const EventContext = React.createContext()
 
@@ -11,7 +11,7 @@ export const EventsProvider = (props) =>{
             headers: {
                 "Authorization": `Token ${localStorage.getItem("event_user_id")}`, 
             },
-        })
+        }) 
         .then((res) => res.json())
         .then(setEvents)
     }
