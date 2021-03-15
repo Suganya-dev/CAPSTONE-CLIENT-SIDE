@@ -22,10 +22,8 @@ return(
         <div> description: {foodtable.description} </div>
         <div>Label: {foodtable.foodType.label}</div>
 
-        {/* <button onClick={() => {
-                history.push(`/foodtables/edit/${foodtable.id}`)
-            }}>Edit
-        </button> */}
+        {/* instead of button ,used link */}
+        {/* state i got it from props */}
         <Link 
         to= {{pathname:`/foodtables/edit/${foodtable.id}`,state:{choosentable:foodtable}}}> 
         Edit </Link>
