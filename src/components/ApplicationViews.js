@@ -9,6 +9,10 @@ import {FoodtypeForm} from "./foodTable/FoodForm"
 import {FoodTableProvider} from "./foodTabless/FoodtableProvider"
 import {FoodTable} from "./foodTabless/FoodtableList"
 import {Foodtableform} from "./foodTabless/FoodtableForm"
+import {EventsProvider} from "./events/EventsProvider"
+import {EventsList} from "./events/EventsList"
+import {EventForm} from "./events/EventsForm"
+
 
 
 export const ApplicationViews = () => {
@@ -77,6 +81,24 @@ export const ApplicationViews = () => {
                     />
                 </FoodTableProvider>
                 </FoodtableProvider>
+                <EventsProvider>
+                <CategoryProvider> 
+                  <Route
+                        exact 
+                        path = "/events"
+                        render={(props) => <EventsList {...props} />}
+                        />
+                        <Route
+                        exact
+                        path="/events/create"
+                        render={(props) => <EventForm {...props} />}
+                      />
+                        <Route
+                        path="/events/edit/:eventsId(\d+)"
+                        render={(props) => <EventForm {...props} />}
+                        />
+                </CategoryProvider>
+                </EventsProvider>
 
       </main>
   </>
