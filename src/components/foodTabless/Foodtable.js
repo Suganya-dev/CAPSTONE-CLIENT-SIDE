@@ -14,6 +14,7 @@ export const Foodtable = ({foodtable}) => {
             removeFoodtable(id)
         }
     }
+    console.log(foodtable)
 
 
 return(

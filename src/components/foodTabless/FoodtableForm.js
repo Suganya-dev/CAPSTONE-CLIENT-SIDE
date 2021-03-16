@@ -11,7 +11,7 @@ export const Foodtableform = (props) =>{
     const{foodtypes,getFoodtype} = useContext(FoodtypeContext)
     //  console.log(foodtypes)
 
-     const editMode = props.match.params.hasOwnProperty("foodtablesId")
+     const editMode = props.match.params.hasOwnProperty("foodtypeId")
 
     const[foodtables,setFoodtables] = useState({
         label: "",
@@ -44,27 +44,28 @@ export const Foodtableform = (props) =>{
     setFoodtables(newFoodtableState)
   }
 
+  // const editMode = parseInt(props.match.params.foodtableId)
   const constructNewFoodtable = () =>{
-    const editMode = parseInt(props.match.params.foodtableId)
     if(!editMode){
     addFoodtable(foodtables)
     .then(()=>props.history.push("/foodtables"))
     }else{
         updateFoodtable({
+            id:parseInt(props.match.params.foodtypeId),
             label:foodtables.label,
             description:foodtables.description,
             // foodtype:foodtables.foodtypes.label
         })
-
-        .then(() => props.history.push(`/foodtables/edit/${foodtable.id}`))
+      
+        .then(() => props.history.push("/foodtables"))
 
     }}
-
+  // console.log(foodtables)
 // i got this path from props.
     console.log(props)
     const Foodlabel = props.location.state.choosentable
     // console.log(Foodlabel)
-
+    console.log(editMode)
   return (
     <form className="PostForm">
       <h2 className="PostForm__title">Post</h2>
