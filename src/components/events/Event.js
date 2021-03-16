@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link,useHistory } from "react-router-dom"
 import {EventContext} from "./EventsProvider"
 import './Events.css'
 
@@ -12,6 +12,8 @@ export const Event = ({event,props}) => {
         if(d=== true){
             deleteEvent(id)
         }}
+
+        console.log(props)
 
     if(localStorage.getItem("event_user_id")){
 

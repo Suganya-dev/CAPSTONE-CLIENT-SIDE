@@ -4,7 +4,7 @@ import { CategoryContext } from "../categories/CategoryProvider"
 import { useHistory } from "react-router-dom"
   
 export const EventForm = (props) =>{
-    const{events,addEvent,getSingleEvents,updateEvent} = useContext(EventContext)
+    const{events,addEvent,updateEvent} = useContext(EventContext)
     const{categories,getCategories} = useContext(CategoryContext)
     const history = useHistory()
 

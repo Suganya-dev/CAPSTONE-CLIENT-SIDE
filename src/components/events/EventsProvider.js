@@ -37,14 +37,14 @@ export const EventsProvider = (props) =>{
           .then(setEvents)
       }
 
-    const updateEvent = (event) =>{
-        return fetch(`http://localhost:8088/events/${event.id}`, {
+    const updateEvent = (events) =>{
+        return fetch(`http://localhost:8088/events/${events.id}`, {
             method: "POST",
             headers: {
               "Authorization": `Token ${localStorage.getItem("event_user_id")}`,
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(event),
+            body: JSON.stringify(events),
         }).then(getEvents)
       }
 

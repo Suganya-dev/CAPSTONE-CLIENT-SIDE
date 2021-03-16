@@ -9,7 +9,7 @@ export const Foodtableform = (props) =>{
     
     const{foodtable,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
     const{foodtypes,getFoodtype} = useContext(FoodtypeContext)
-     console.log(foodtypes)
+    //  console.log(foodtypes)
 
      const editMode = props.match.params.hasOwnProperty("foodtablesId")
 
