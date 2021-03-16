@@ -46,7 +46,7 @@ export const Foodtableform = (props) =>{
 
   // const editMode = parseInt(props.match.params.foodtableId)
   const constructNewFoodtable = () =>{
-    if(!editMode){
+    if(editMode === false){
     addFoodtable(foodtables)
     .then(()=>props.history.push("/foodtables"))
     }else{

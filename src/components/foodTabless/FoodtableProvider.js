@@ -3,7 +3,8 @@ import React, {useState} from "react"
 export const FoodTableContext = React.createContext()
 
 export const FoodTableProvider = (props) =>{
-    const[foodtable,setFoodtable] = useState([])
+    const[foodtable,setFoodtable] = useState({foodType:{}})
+    const[foodtables,setFoodtables] = useState([])
 
     const getFoodtable = () =>{
         return fetch("http://localhost:8000/foodtables",{
@@ -57,13 +58,13 @@ export const FoodTableProvider = (props) =>{
             },
             body: JSON.stringify(foodtable)
         })
-            .then(getFoodtable)
+            // .then(getFoodtable)
     }
 
     
     return (
         <FoodTableContext.Provider value = {{
-            foodtable, getFoodtable,getSinglefoodTable,addFoodtable,removeFoodtable,updateFoodtable
+            foodtable,foodtables, getFoodtable,getSinglefoodTable,addFoodtable,removeFoodtable,updateFoodtable
         }}>
             {props.children}
         </FoodTableContext.Provider>
