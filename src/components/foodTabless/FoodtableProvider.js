@@ -13,7 +13,7 @@ export const FoodTableProvider = (props) =>{
             }
         })
         .then(res => res.json())
-        .then(setFoodtable)
+        .then(setFoodtables)
     }
 
     const getSinglefoodTable= (id) => {

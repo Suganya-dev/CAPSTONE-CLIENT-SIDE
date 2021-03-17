@@ -11,6 +11,11 @@ export const FoodTable = (props) =>{
         getFoodtable()
     },[])
 
+    // renders jsx first html element
+    // second useeffect dependancy array
+    // Then renders getfoodtable
+    
+
     return(
         <>
         <div className ="row">

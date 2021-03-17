@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 // component responsible for rendering a single foodtable
 
 export const Foodtable = ({foodtable}) => {
+
     const { removeFoodtable } = useContext(FoodTableContext)
     const history = useHistory()
 
@@ -16,12 +17,12 @@ export const Foodtable = ({foodtable}) => {
     }
     console.log(foodtable)
 
-
-return(
+    return(
+    
     <div className ="foodtables">
         <div>   label: {foodtable.label} </div>
         <div> description: {foodtable.description} </div>
-        <div>Label: {foodtable.foodType.label}</div>
+        <div> Label: {foodtable.foodType.label} </div>
 
         {/* instead of button ,used link */}
         {/* state i got it from props */}
@@ -37,5 +38,5 @@ return(
                 Delete
         </button>
     </div>
-)
-}
+   
+) }
