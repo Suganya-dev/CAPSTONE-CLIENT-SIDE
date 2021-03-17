@@ -4,7 +4,7 @@ import { CategoryContext } from "../categories/CategoryProvider"
 import { useHistory } from "react-router-dom"
   
 export const EventForm = (props) =>{
-    const{events,addEvent,getSingleEvents,updateEvent} = useContext(EventContext)
+    const{events,addEvent,updateEvent} = useContext(EventContext)
     const{categories,getCategories} = useContext(CategoryContext)
     const history = useHistory()
 
@@ -37,17 +37,18 @@ export const EventForm = (props) =>{
 
     const OnControlledChangeState = (Event) => {
         const newEventState = Object.assign({}, currentEvent)
-        newEventState[Event.target.name] = [Event.target.value]
+        newEventState[Event.target.name] = Event.target.value
         setcurrentEvent(newEventState)
     }
 
+    // const editMode = parseInt(props.match.params.eventsId)
     const constructNewEvent = () =>{
-        const editMode = parseInt(props.match.params.eventsId)
-        if(!editMode){
-        addEvent(currentEvent)
-        .then(() => props.history.push("/events"))
+        if(editMode === false){
+            addEvent(currentEvent)
+            .then(() => props.history.push("/events"))
         }else{
             updateEvent({
+                id : parseInt(props.match.params.eventsId),
                 eventUser:currentEvent.eventUser,
                 eventName:currentEvent.eventName,
                 eventdate:currentEvent.eventdate,
@@ -55,13 +56,14 @@ export const EventForm = (props) =>{
                 numOfGuests:currentEvent.numOfGuests,
                 content:currentEvent.content,
                 approved:currentEvent.approved,
-                category:currentEvent.category
+                category:parseInt(currentEvent.category)
             })
-
-            .then(() => props.history.push(`/events/edit/${events.id}`))
+            
+            .then(() => props.history.push("/events"))
         }}
-
-
+        
+        console.log(editMode)
+        
         return(
             <form className = "EventForm">
             <h2 className="EventForm__Events">EVENTS</h2>

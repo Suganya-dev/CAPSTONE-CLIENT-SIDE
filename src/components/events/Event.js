@@ -1,9 +1,22 @@
 import React, { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link,useHistory } from "react-router-dom"
+import {EventContext} from "./EventsProvider"
 import './Events.css'
 
 export const Event = ({event,props}) => {
+    const {deleteEvent} = useContext(EventContext)
+    const history = useHistory()
+
+    const ConfirmDelete = (id) =>{
+        const d = window.confirm("would you like to delete this?")
+        if(d=== true){
+            deleteEvent(id)
+        }}
+
+        console.log(props)
+
     if(localStorage.getItem("event_user_id")){
+
         return(
 
             <div className ="Events">
@@ -17,12 +30,17 @@ export const Event = ({event,props}) => {
                 <div>category:{event.category.label}</div>
 
                 <Link to={{
-                    pathname: `/events/add_events/${event.id}`,
+                    pathname: `/events/edit/${event.id}`,
                     // state:{chosenPost: post}
-                }}>Add Tags</Link>
+                }}>Edit Events</Link>
+
+                <button onClick={
+                () => {
+                    ConfirmDelete(event.id) 
+                }}>Delete </button>
             </div>
-        )
-    }else{
+            
+        )}else{
         return(
             <div>
                 You haven't made any Events.

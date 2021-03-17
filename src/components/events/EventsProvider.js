@@ -38,8 +38,8 @@ export const EventsProvider = (props) =>{
       }
 
     const updateEvent = (event) =>{
-        return fetch(`http://localhost:8088/events/${event.id}`, {
-            method: "POST",
+        return fetch(`http://localhost:8000/events/${event.id}`, {
+            method: "PUT",
             headers: {
               "Authorization": `Token ${localStorage.getItem("event_user_id")}`,
               "Content-Type": "application/json",
@@ -49,7 +49,8 @@ export const EventsProvider = (props) =>{
       }
 
       const addEvent = (event) => {
-        return fetch("http://localhost:8000/events", {
+        return fetch("http://localhost:8000/events",{
+        
           method: "POST",
           headers: {
             "Authorization": `Token ${localStorage.getItem("event_user_id")}`,
@@ -62,7 +63,10 @@ export const EventsProvider = (props) =>{
       const deleteEvent = (id) => {
         return fetch(`http://localhost:8000/events/${id}`, {
           method: "DELETE",
-        }).then(getEvents)
+          headers: {
+            "Authorization": `Token ${localStorage.getItem("event_user_id")}`,
+          },})
+        .then(getEvents)
       }
 
       return(

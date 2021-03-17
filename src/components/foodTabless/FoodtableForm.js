@@ -7,24 +7,27 @@ import { useHistory } from "react-router-dom"
 export const Foodtableform = (props) =>{
     const history = useHistory()
     
-    const{foodtable,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
+    const{foodtables,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
     const{foodtypes,getFoodtype} = useContext(FoodtypeContext)
-     console.log(foodtypes)
+    //  console.log(foodtypes)
 
-     const editMode = props.match.params.hasOwnProperty("foodtablesId")
-
-    const[foodtables,setFoodtables] = useState({
-        label: "",
-        description: "",
-        foodType: 0,
+     const editMode = props.match.params.hasOwnProperty("foodtypeId")
+     const Foodlabel = props.location.state ? props.location.state.choosentable :{}
+     
+    const[foodtable,setFoodtable] = useState({
+        id : parseInt(Foodlabel.id),
+        label: Foodlabel.label,
+        description: Foodlabel.description,
+        foodType_id: Foodlabel.foodType_id
     })
 
     const getFoodtableInEditMode = () => {
     
         const foodtablesId = parseInt(props.match.params.foodtablesId)
-        const selectedFoodtable = foodtable.find(a => a.id === foodtablesId) || {}
-        setFoodtables(selectedFoodtable)
+        const selectedFoodtable = foodtables.find(a => a.id === foodtablesId) || {}
+        setFoodtable(selectedFoodtable)
     }
+    console.log(foodtable)
 
     useEffect(() => {
         getFoodtype()
@@ -32,39 +35,40 @@ export const Foodtableform = (props) =>{
 
     useEffect(() =>{
         getFoodtableInEditMode()
-    },[foodtable])
+    },[foodtables])
 
         /*
   Update the `Foodtable` state variable every time
   the state of one of the input fields changes.
   */
   const changeFoodtableState = (domEvent) => {
-    const newFoodtableState = Object.assign({}, foodtables)
+    const newFoodtableState = Object.assign({}, foodtable)
     newFoodtableState[domEvent.target.name] = domEvent.target.value
-    setFoodtables(newFoodtableState)
+    setFoodtable(newFoodtableState)
   }
 
+  // const editMode = parseInt(props.match.params.foodtableId)
   const constructNewFoodtable = () =>{
-    const editMode = parseInt(props.match.params.foodtableId)
-    if(!editMode){
-    addFoodtable(foodtables)
+    if(editMode === false){
+    addFoodtable({
+      label: Foodlabel.label,
+      description: Foodlabel.description,
+      foodType_id: Foodlabel.foodType_id
+    })
     .then(()=>props.history.push("/foodtables"))
     }else{
-        updateFoodtable({
-            label:foodtables.label,
-            description:foodtables.description,
-            // foodtype:foodtables.foodtypes.label
-        })
-
-        .then(() => props.history.push(`/foodtables/edit/${foodtable.id}`))
+        updateFoodtable(foodtable )
+      
+        .then(() => props.history.push("/foodtables"))
 
     }}
-
+  // console.log(foodtables)
 // i got this path from props.
-    console.log(props)
-    const Foodlabel = props.location.state.choosentable
-    // console.log(Foodlabel)
 
+    console.log(props)
+
+    console.log(Foodlabel)
+    console.log(editMode)
   return (
     <form className="PostForm">
       <h2 className="PostForm__title">Post</h2>
@@ -106,8 +110,8 @@ export const Foodtableform = (props) =>{
           {foodtypes&&
             <select
             type="text"
-            name="foodType"
-            id="foodType"
+            name="foodType_id"
+            id="foodType_id"
             required
             className="form-control"
             defaultValue={1}
@@ -116,6 +120,7 @@ export const Foodtableform = (props) =>{
                 {/* (paranthesis means single line function, no return) */}
                 {/* {curly braces multi line fn, needs return } */}
                 {/* drop down list(mapping) */}
+                <option value = "0">Please select the Foodtype</option>
           { foodtypes.map ((fT) => (
             //   {console.log(fT.label)}
               <option key={fT.id} value ={fT.id}>
