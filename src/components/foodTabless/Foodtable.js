@@ -16,7 +16,7 @@ export const Foodtable = ({foodtable}) => {
         }
     }
     console.log(foodtable)
-
+   
     return(
     
     <div className ="foodtables">
@@ -26,9 +26,10 @@ export const Foodtable = ({foodtable}) => {
 
         {/* instead of button ,used link */}
         {/* state i got it from props */}
+        <button> 
         <Link 
         to= {{pathname:`/foodtables/edit/${foodtable.id}`,state:{choosentable:foodtable}}}> 
-        Edit </Link>
+        Edit </Link> </button>
         
         <button onClick={
                 () => {

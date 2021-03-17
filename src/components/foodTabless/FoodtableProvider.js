@@ -58,7 +58,7 @@ export const FoodTableProvider = (props) =>{
             },
             body: JSON.stringify(foodtable)
         })
-            // .then(getFoodtable)
+            .then(getFoodtable)
     }
 
     

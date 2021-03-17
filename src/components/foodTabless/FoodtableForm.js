@@ -12,11 +12,13 @@ export const Foodtableform = (props) =>{
     //  console.log(foodtypes)
 
      const editMode = props.match.params.hasOwnProperty("foodtypeId")
-
+     const Foodlabel = props.location.state ? props.location.state.choosentable :{}
+     
     const[foodtable,setFoodtable] = useState({
-        label: "",
-        description: "",
-        foodType_id: 0,
+        id : parseInt(Foodlabel.id),
+        label: Foodlabel.label,
+        description: Foodlabel.description,
+        foodType_id: Foodlabel.foodType_id
     })
 
     const getFoodtableInEditMode = () => {
@@ -25,6 +27,7 @@ export const Foodtableform = (props) =>{
         const selectedFoodtable = foodtables.find(a => a.id === foodtablesId) || {}
         setFoodtable(selectedFoodtable)
     }
+    console.log(foodtable)
 
     useEffect(() => {
         getFoodtype()
@@ -47,15 +50,14 @@ export const Foodtableform = (props) =>{
   // const editMode = parseInt(props.match.params.foodtableId)
   const constructNewFoodtable = () =>{
     if(editMode === false){
-    addFoodtable(foodtable)
+    addFoodtable({
+      label: Foodlabel.label,
+      description: Foodlabel.description,
+      foodType_id: Foodlabel.foodType_id
+    })
     .then(()=>props.history.push("/foodtables"))
     }else{
-        updateFoodtable({
-            id:parseInt(props.match.params.foodtypeId),
-            label:foodtable.label,
-            description:foodtable.description,
-            // foodtype:foodtables.foodtypes.foodtype_id
-        })
+        updateFoodtable(foodtable )
       
         .then(() => props.history.push("/foodtables"))
 
@@ -63,9 +65,8 @@ export const Foodtableform = (props) =>{
   // console.log(foodtables)
 // i got this path from props.
 
-    // console.log(props)
+    console.log(props)
 
-    const Foodlabel = props.location.state ? props.location.state.choosentable :{}
     console.log(Foodlabel)
     console.log(editMode)
   return (
