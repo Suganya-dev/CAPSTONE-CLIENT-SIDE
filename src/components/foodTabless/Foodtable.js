@@ -22,7 +22,7 @@ export const Foodtable = ({foodtable}) => {
     <div className ="foodtables">
         <div>   label: {foodtable.label} </div>
         <div> description: {foodtable.description} </div>
-        <div> Label: {foodtable.foodType_id} </div>
+        <div> Label: {foodtable.foodType.label} </div>
   
         {/* instead of button ,used link */}
         {/* state i got it from props */}

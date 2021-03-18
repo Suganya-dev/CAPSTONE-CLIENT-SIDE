@@ -46,7 +46,7 @@ export const EventForm = (props) =>{
         if(editMode === false){
             addEvent(currentEvent)
             .then(() => props.history.push("/events"))
-            
+
         }else{
             updateEvent({
                 id : parseInt(props.match.params.eventsId),
@@ -141,7 +141,7 @@ export const EventForm = (props) =>{
             <fieldset>
                 <div className ="form-group">
                     <label htmlFor ="eventname">Category:</label>
-                    <input 
+                    <select 
                       type="text"
                       name="category"
                       id="category"
@@ -149,7 +149,15 @@ export const EventForm = (props) =>{
                       className ="form-control"
                       defaultValue = {currentEvent.category}
                       onChange ={OnControlledChangeState}
-                      />
+                      >
+                        <option value ="0">Please select the Category</option>
+                        {categories.map ((cT) => (
+                            <option key={cT.id} value={cT.id}>
+                                {cT.label}
+                            </option>
+                        ))}
+                        </select>
+
                 </div>
             </fieldset>
 

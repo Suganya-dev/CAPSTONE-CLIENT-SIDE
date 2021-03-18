@@ -68,7 +68,7 @@ export const EventsProvider = (props) =>{
           },})
         .then(getEvents)
       }
-
+      
       return(
           <EventContext.Provider value = {{
             events,getEvents,getSingleEvents,getEventsByUserId,updateEvent,addEvent,deleteEvent

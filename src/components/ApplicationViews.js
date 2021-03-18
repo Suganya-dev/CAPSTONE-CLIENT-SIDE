@@ -76,7 +76,7 @@ export const ApplicationViews = () => {
                     />
 
                     <Route
-                      path="/foodtables/edit/:foodtypeId(\d+)"
+                      path="/foodtables/edit/:foodtableId(\d+)"
                       render={(props) => <Foodtableform {...props} />}
                     />
                 </FoodTableProvider>

@@ -46,7 +46,7 @@ const constructNewFoodtable = () => {
       description: currentFoodtable.description,
       foodType: currentFoodtable.foodType
     })
-    .then(() => props.history.push("/foodtable"))
+    .then(() => props.history.push("/foodtables"))
   }}
 
   return (
