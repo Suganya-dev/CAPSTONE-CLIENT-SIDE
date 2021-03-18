@@ -46,6 +46,7 @@ export const EventForm = (props) =>{
         if(editMode === false){
             addEvent(currentEvent)
             .then(() => props.history.push("/events"))
+            
         }else{
             updateEvent({
                 id : parseInt(props.match.params.eventsId),

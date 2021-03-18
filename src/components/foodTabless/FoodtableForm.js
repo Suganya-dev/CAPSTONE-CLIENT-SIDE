@@ -13,7 +13,7 @@ export const Foodtableform = (props) => {
   const[currentFoodtable, setcurrentFoodtable] = useState({
       label:"",
       description: "",
-      foodType: 0
+      foodType: "",
   })
 
   const getFoodtablesInEditmode =() => {
@@ -90,11 +90,11 @@ const constructNewFoodtable = () => {
           {foodtypes&&
             <select
             type="text"
-            name="foodType_id"
-            id="foodType_id"
+            name="foodType"
+            id="foodType"
             required
             className="form-control"
-            defaultValue={1}
+            defaultValue={currentFoodtable.foodType}
             onChange={changeFoodtableState}
             >
                 {/* (paranthesis means single line function, no return) */}
@@ -102,7 +102,7 @@ const constructNewFoodtable = () => {
                 {/* drop down list(mapping) */}
                 <option value = "0">Please select the Foodtype</option>
           { foodtypes.map ((fT) => (
-            <option key={fT.id} value ={console.log(fT.id)} >
+            <option key={fT.id} value ={fT.id} >
                   {fT.label}
               </option>
             ))

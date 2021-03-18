@@ -28,11 +28,11 @@ export const Event = ({event,props}) => {
                 <div>content:{event.content}</div>
                 <div>approved:True</div>
                 <div>category:{event.category.label}</div>
-
+                <button> 
                 <Link to={{
                     pathname: `/events/edit/${event.id}`,
                     // state:{chosenPost: post}
-                }}>Edit Events</Link>
+                }}>Edit Events</Link> </button>
 
                 <button onClick={
                 () => {
