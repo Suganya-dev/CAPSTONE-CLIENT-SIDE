@@ -23,12 +23,14 @@ export const Foodtable = ({foodtable}) => {
         <div>   label: {foodtable.label} </div>
         <div> description: {foodtable.description} </div>
         <div> Label: {foodtable.foodType.label} </div>
-
+  
         {/* instead of button ,used link */}
         {/* state i got it from props */}
         <button> 
         <Link 
-        to= {{pathname:`/foodtables/edit/${foodtable.id}`,state:{choosentable:foodtable}}}> 
+        to= {{pathname:`/foodtables/edit/${foodtable.id}`,
+        // state:{choosentable:foodtable}
+        }}> 
         Edit </Link> </button>
         
         <button onClick={

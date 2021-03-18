@@ -33,6 +33,7 @@ export const CategoryForm = (props) => {
             setCategory(selectedCategory)
         }
     }
+    
 //    empty array renders on second render
     useEffect(() => {
         getCategories()
