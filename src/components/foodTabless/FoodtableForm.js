@@ -1,74 +1,54 @@
-import React, { useContext,useState, useEffect } from "react"
-import { FoodTableContext } from "./FoodtableProvider"
-import { FoodtypeContext } from "../foodTable/FoodProvider"
+import React, { useContext, useState, useEffect } from "react"
+import {FoodTableContext} from "./FoodtableProvider"
+import {FoodtypeContext} from "../foodTable/FoodProvider"
 import { useHistory } from "react-router-dom"
 
-// This module renders the create  foodtable form and edit foodtable form
-export const Foodtableform = (props) =>{
-    const history = useHistory()
-    
-    const{foodtables,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
-    const{foodtypes,getFoodtype} = useContext(FoodtypeContext)
-    //  console.log(foodtypes)
+export const Foodtableform = (props) => {
+  const{foodtable,foodtables,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
+  const{foodtypes,getFoodtype} = useContext(FoodtypeContext)
+  const history = useHistory()
 
-     const editMode = props.match.params.hasOwnProperty("foodtypeId")
-     const Foodlabel = props.location.state ? props.location.state.choosentable :{}
-     
-    const[foodtable,setFoodtable] = useState({
-        id : parseInt(Foodlabel.id),
-        label: Foodlabel.label,
-        description: Foodlabel.description,
-        foodType_id: Foodlabel.foodType_id
-    })
+  const editMode = props.match.params.hasOwnProperty("foodtableId")
 
-    const getFoodtableInEditMode = () => {
-    
-        const foodtablesId = parseInt(props.match.params.foodtablesId)
-        const selectedFoodtable = foodtables.find(a => a.id === foodtablesId) || {}
-        setFoodtable(selectedFoodtable)
-    }
-    console.log(foodtable)
+  const[currentFoodtable, setcurrentFoodtable] = useState({
+      label:"",
+      description: "",
+      foodType: 0
+  })
 
-    useEffect(() => {
-        getFoodtype()
-      }, [])
-
-    useEffect(() =>{
-        getFoodtableInEditMode()
-    },[foodtables])
-
-        /*
-  Update the `Foodtable` state variable every time
-  the state of one of the input fields changes.
-  */
-  const changeFoodtableState = (domEvent) => {
-    const newFoodtableState = Object.assign({}, foodtable)
-    newFoodtableState[domEvent.target.name] = domEvent.target.value
-    setFoodtable(newFoodtableState)
+  const getFoodtablesInEditmode =() => {
+    const foodtableId = parseInt(props.match.params.foodtableId)
+    const selectedFoodtable = foodtables.find(a => a.id === foodtableId) || {}
+    setcurrentFoodtable(selectedFoodtable)
   }
+  useEffect(() => {
+    getFoodtype()
+  }, [])
 
-  // const editMode = parseInt(props.match.params.foodtableId)
-  const constructNewFoodtable = () =>{
-    if(editMode === false){
-    addFoodtable({
-      label: Foodlabel.label,
-      description: Foodlabel.description,
-      foodType_id: Foodlabel.foodType_id
+  useEffect(() =>{
+    getFoodtablesInEditmode()
+},[foodtables])
+
+const changeFoodtableState = (Event) => {
+  const newFoodtablestate = Object.assign({}, currentFoodtable)
+  newFoodtablestate[Event.target.name] = Event.target.value
+  setcurrentFoodtable(newFoodtablestate)
+}
+
+const constructNewFoodtable = () => {
+  if(editMode === false){
+    addFoodtable(currentFoodtable)
+    .then(() => props.history.push("/foodtables"))
+  }else{
+    updateFoodtable({
+      id: parseInt(props.match.params.foodtableId),
+      label: currentFoodtable.label,
+      description: currentFoodtable.description,
+      foodType: currentFoodtable.foodType
     })
-    .then(()=>props.history.push("/foodtables"))
-    }else{
-        updateFoodtable(foodtable )
-      
-        .then(() => props.history.push("/foodtables"))
+    .then(() => props.history.push("/foodtable"))
+  }}
 
-    }}
-  // console.log(foodtables)
-// i got this path from props.
-
-    console.log(props)
-
-    console.log(Foodlabel)
-    console.log(editMode)
   return (
     <form className="PostForm">
       <h2 className="PostForm__title">Post</h2>
@@ -82,7 +62,7 @@ export const Foodtableform = (props) =>{
             required
             autoFocus
             className="form-control"
-            defaultValue={Foodlabel.label}
+            defaultValue={currentFoodtable.label}
             onChange={changeFoodtableState}
           />
         </div>
@@ -97,7 +77,7 @@ export const Foodtableform = (props) =>{
             id="description"
             required
             className="form-control"
-            defaultValue={Foodlabel.description}
+            defaultValue={currentFoodtable.description}
             onChange={changeFoodtableState}
           />
         </div>
@@ -122,12 +102,12 @@ export const Foodtableform = (props) =>{
                 {/* drop down list(mapping) */}
                 <option value = "0">Please select the Foodtype</option>
           { foodtypes.map ((fT) => (
-            //   {console.log(fT.label)}
-              <option key={fT.id} value ={fT.id}>
+            <option key={fT.id} value ={console.log(fT.id)} >
                   {fT.label}
               </option>
             ))
-        } 
+          } 
+        
         </select> }
         </div>
       </fieldset>
@@ -139,3 +119,9 @@ export const Foodtableform = (props) =>{
       </form>
   )    
 }
+
+
+
+
+
+
