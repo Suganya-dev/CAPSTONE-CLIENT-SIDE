@@ -82,11 +82,13 @@ export const ApplicationViews = () => {
                     />
                 </FoodTableProvider>
                 </FoodtableProvider>
+
                 <EventsProvider>
                 <CategoryProvider> 
+                <FoodTableProvider>
 
                   <Route
-                   exact path = "/events/:eventsId(\d+)/addfoodplanner"
+                     path = "/events/:eventsId(\d+)/foodplanner"
                      render = {(props) => <AddfoodtoEvents {...props}/>}/>
                   <Route
                         exact 
@@ -102,6 +104,7 @@ export const ApplicationViews = () => {
                         path="/events/edit/:eventsId(\d+)"
                         render={(props) => <EventForm {...props} />}
                         />
+                </FoodTableProvider>
                 </CategoryProvider>
                 </EventsProvider>
 

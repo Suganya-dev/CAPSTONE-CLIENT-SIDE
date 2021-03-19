@@ -19,7 +19,7 @@ export const FoodTable = (props) =>{
     return(
         <>
         <div className ="row">
-            <h1>FOODTABLES</h1>
+            <h2>FOODTABLES</h2>
             <button onClick = {() => {
                 props.history.push(`/foodtables/create`)
             }}> Create a new foodtable </button>

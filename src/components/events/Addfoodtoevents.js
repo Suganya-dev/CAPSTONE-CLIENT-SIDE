@@ -1,39 +1,37 @@
 import React, {useContext, useRef, useEffect, useState} from "react"
-import {FoodtypeContext} from "../foodTable/FoodProvider"
+import {FoodTableContext} from "../foodTabless/FoodtableProvider"
 import {EventContext} from "./EventsProvider"
 import { Link } from "react-router-dom"
 
 export const AddfoodtoEvents = (props) => {
-    const {getSingleEvents,events,addfoodplanner} = useContext(EventContext)
-    const {foodtable,getFoodtable} = useContext(FoodtypeContext)
+    const {addfoodplanner} = useContext(EventContext)
+    const {foodtables,getFoodtable} = useContext(FoodTableContext)
 
     useEffect(()=>{
         getFoodtable()
-        .then(getSingleEvents(parseInt(props.match.params.eventsId)))
-        },[]) 
+    },[]) 
 
-    const FoodEventLabel = (events.foodtable? events.foodtable.map(pt=>{
-        return pt.id
-    }) : [])
-
+    
+    // console.log(foodtables)
     return(
-        <form>
+        <>
             <Link  to={{
-                    pathname: `/events/${events.id}`}}>Back To Events</Link>
+                    pathname:"/events"}} >Back To Events
+            </Link>
             <fieldset>
                 <div>
                     {
-                        foodtable.map((t)=>{
-                            if(!FoodEventLabel.find(pt=>parseInt(pt) === parseInt(t.id)))
+                        foodtables.map((t)=>{
                           return(
                               <div>{t.label}<button 
-                              onClick={()=>{addfoodplanner(events.id, {FoodtableId:t.id})}}>Add  Food To Events</button></div>
+                            //   eventsId is not defined so i used props.match.params
+                              onClick={()=>{addfoodplanner(props.match.params.eventsId, t.id)}}>
+                              Add  Food To Events</button></div>
                           )
                         }
                         )
                     }
                 </div>
             </fieldset>
-        </form>
-    )
-    }
+        </>
+    )}
