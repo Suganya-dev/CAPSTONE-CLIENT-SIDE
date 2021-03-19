@@ -78,6 +78,10 @@ export const EventsProvider = (props) =>{
 
       // method to add foodplanner to events
       const addfoodplanner = (EventsId,FoodtableId) => {
+        const foodObj = {
+           Events_id : EventsId,
+           foodtable_id : FoodtableId
+        }
         return fetch (`http://localhost:8000/events/${EventsId}/foodplanner`,{
           method: 'POST',
           headers: {

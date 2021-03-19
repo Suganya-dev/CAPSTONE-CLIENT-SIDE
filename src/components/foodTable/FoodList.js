@@ -12,7 +12,7 @@ export const FoodList =(props) =>{
     return (
         <>
           <div className ="row">
-            <h1>FOODTYPES</h1>
+            <h2>LIST OF FOODTYPES</h2>
             <button onClick = {() => {
                 props.history.push(`/foodtypes/create`)
             }}> Create a new foodtype </button>

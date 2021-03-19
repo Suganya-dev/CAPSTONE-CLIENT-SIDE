@@ -22,11 +22,11 @@ export const Category = ({ category }) => {
                     confirmDelete(category.id) 
                 }
             }>
-                Delete
+                Delete Category
             </button>
             <button onClick={() => {
                 history.push(`/categories/edit/${category.id}`)
-            }}>Edit
+            }}>Edit Category
             </button>
     </section>
     )

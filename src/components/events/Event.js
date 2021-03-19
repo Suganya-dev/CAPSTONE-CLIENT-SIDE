@@ -37,7 +37,7 @@ export const Event = ({event,props}) => {
                 <button onClick={
                 () => {
                     ConfirmDelete(event.id) 
-                }}>Delete </button>
+                }}>Delete Events </button>
             </div>
             
         )}else{

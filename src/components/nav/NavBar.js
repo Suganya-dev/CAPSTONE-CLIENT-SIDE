@@ -11,14 +11,10 @@ export const NavBar = () => {
       <li className="navbar__item">
         {/* <img className="navbar__logo" src={Logo} /> */}
       </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/">
-          My Events
-        </Link>
-      </li>
+
       <li className="navbar__item">
         <Link className="navbar__link" to="/events">
-          All Events
+          My Events
         </Link>
       </li>
       <li className="navbar__item">
@@ -26,11 +22,7 @@ export const NavBar = () => {
           Category 
         </Link>
       </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/food">
-          Food Planner
-        </Link>
-      </li>
+
       <li className="navbar__item">
         <Link className="navbar__link" to="/foodtables">
           Food Table
