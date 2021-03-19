@@ -12,6 +12,7 @@ import {Foodtableform} from "./foodTabless/FoodtableForm"
 import {EventsProvider} from "./events/EventsProvider"
 import {EventsList} from "./events/EventsList"
 import {EventForm} from "./events/EventsForm"
+import {AddfoodtoEvents} from "./events/Addfoodtoevents"
 
 
 
@@ -83,6 +84,10 @@ export const ApplicationViews = () => {
                 </FoodtableProvider>
                 <EventsProvider>
                 <CategoryProvider> 
+
+                  <Route
+                   exact path = "/events/:eventsId(\d+)/addfoodplanner"
+                     render = {(props) => <AddfoodtoEvents {...props}/>}/>
                   <Route
                         exact 
                         path = "/events"

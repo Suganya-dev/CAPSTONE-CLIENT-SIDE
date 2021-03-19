@@ -86,7 +86,7 @@ export const EventForm = (props) =>{
                 <div className ="form-group">
                     <label htmlFor ="eventname">Eventdate:</label>
                     <input 
-                      type="text"
+                      type="date"
                       name="eventdate"
                       id="eventdate"
                       required autoFocus
