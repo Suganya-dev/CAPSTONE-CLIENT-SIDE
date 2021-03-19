@@ -4,7 +4,7 @@ import {EventContext} from "./EventsProvider"
 import { Link } from "react-router-dom"
 
 export const AddfoodtoEvents = (props) => {
-    const {getSingleEvents,events,addfoodplanner} = useContext(EventContext)
+    const {addfoodplanner} = useContext(EventContext)
     const {foodtables,getFoodtable} = useContext(FoodTableContext)
 
     useEffect(()=>{
@@ -16,14 +16,16 @@ export const AddfoodtoEvents = (props) => {
     return(
         <>
             <Link  to={{
-                    pathname:"/events"}} >Back To Events</Link>
+                    pathname:"/events"}} >Back To Events
+            </Link>
             <fieldset>
                 <div>
                     {
                         foodtables.map((t)=>{
                           return(
                               <div>{t.label}<button 
-                              onClick={()=>{addfoodplanner(events.id, t.id)}}>
+                            //   eventsId is not defined so i used props.match.params
+                              onClick={()=>{addfoodplanner(props.match.params.eventsId, t.id)}}>
                               Add  Food To Events</button></div>
                           )
                         }

@@ -88,7 +88,7 @@ export const EventsProvider = (props) =>{
             "Content-Type": "application/json",
             Authorization : `Token ${localStorage.getItem("event_user_id")}`,
             },
-            body: JSON.stringify(FoodtableId)
+            body: JSON.stringify(foodObj)
         })
         .then(getSingleEvents(EventsId))
       }
