@@ -1,14 +1,32 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: normal;
+    font-size:large;
+    font-weight: bold;
+    font-style: italic;
+    border: 2px solid rgb(75, 75, 252);
+    border-radius: 15px 15px;
+    margin: 0.5em;
+    padding: 0.5em;
+    background: rgb(252, 190, 216)
 }
 
 .navbar__item {
-    flex-basis: 20%;
+    flex-basis:auto;
+    /* order:7; */
     list-style-type: none;
+    margin: 2em;
+    padding: 1em;
+    border: 2px solid dodgerblue;
+    border-radius: 5px 5px;
+    font-style: italic;
 }
 
 .navbar__logo {
     max-height: 6rem;
 }
+
+a:hover, a:active {
+    background-color: rgb(215, 72, 240);
+  }

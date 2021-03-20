@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {FoodtypeContext} from "./FoodProvider"
+import "./Foodtypes.css"
 
 export const FoodtypeForm = (props) => {
     const {foodtypes, getFoodtype,addFoodtype,updateFoodtype} = useContext(FoodtypeContext)
@@ -61,6 +62,7 @@ export const FoodtypeForm = (props) => {
                 />
             </div>
         </fieldset>
+        <section className = "button"> 
         <button type="submit"
                     onClick={evt => {
                         evt.preventDefault() // Prevent browser from submitting the form
@@ -73,5 +75,6 @@ export const FoodtypeForm = (props) => {
                     props.history.push(`/foodtypes`)
                 }}>Back
                 </button>
+                </section>
             </form>
     )}

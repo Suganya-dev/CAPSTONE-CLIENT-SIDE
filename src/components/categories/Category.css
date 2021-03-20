@@ -1,0 +1,36 @@
+.categories{
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    font-style: italic;
+    border: 1px solid rgb(99, 173, 247);
+    border-radius: 20px 20px;
+    background:rgb(116, 248, 209);
+    background-color: rgb(151, 221, 245)210, 228);
+}
+
+
+.categoryForm{
+    border: 2px solid rgb(106, 106, 241);
+    margin: 1em;
+    padding: 1em;
+    font-size:medium;
+    font-weight: bold;
+    font-style: italic;
+    background:rgb(205, 189, 241);
+    background-color: rgb(114, 223, 214)210, 228);
+}
+
+.button{
+    background-color: rgb(117, 117, 226);
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 1px;
+    cursor: pointer;
+  
+  }

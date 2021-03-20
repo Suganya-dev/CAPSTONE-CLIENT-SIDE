@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CategoryContext } from "./CategoryProvider"
+import "./Category.css"
 
 export const CategoryForm = (props) => {
     // props - package of info sending with components history,loc,match
@@ -72,6 +73,7 @@ export const CategoryForm = (props) => {
                         />
                     </div>
                 </fieldset>
+                {/* <section className ="button">  */}
                 <button type="submit"
                     onClick={evt => {
                         evt.preventDefault() // Prevent browser from submitting the form
@@ -84,6 +86,7 @@ export const CategoryForm = (props) => {
                     props.history.push(`/categories`)
                 }}>Back
                 </button>
+                {/* </section> */}
             </form>
         )
 

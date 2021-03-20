@@ -11,22 +11,24 @@ export const CategoryList = (props) => {
 
     return (
         <>
-            <div className="row">
+            <div className="categories">
             <h2>EVENTS CATEGORY</h2>
+
+             <section className ="button">
                 <button onClick={() => {
                     props.history.push(`/categories/create`)
                 }}>Create new category
                 </button>
-                <div className="column">
+                </section>
+                
+                <div className="categories">
                     
                     {categories
                     .map(category => {
                         return <Category key={category.id} 
                         category={category} props={props} 
-                        
-                    />
-                    })
-                    }
+                        />
+                    })}
                 </div>
             </div>
         </>

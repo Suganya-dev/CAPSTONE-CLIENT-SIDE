@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import {FoodTableContext} from "./FoodtableProvider"
 import {FoodtypeContext} from "../foodTable/FoodProvider"
 import { useHistory } from "react-router-dom"
+import "./Foodtable.css"
 
 export const Foodtableform = (props) => {
   const{foodtable,foodtables,getFoodtable,addFoodtable,updateFoodtable} = useContext(FoodTableContext)
@@ -50,8 +51,8 @@ const constructNewFoodtable = () => {
   }}
 
   return (
-    <form className="PostForm">
-      <h2 className="PostForm__title">Post</h2>
+    <form className="foodtableForm">
+      <h2 className="foodtableForm__title">Post</h2>
       <fieldset>
         <div className="form-group">
           <label htmlFor="title">Label: </label>
