@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { FoodTableContext } from "../foodTabless/FoodtableProvider"
 import { Link, useHistory } from "react-router-dom"
+import "./Foodtable.css"
 
 // component responsible for rendering a single foodtable
 
@@ -26,20 +27,19 @@ export const Foodtable = ({foodtable}) => {
   
         {/* instead of button ,used link */}
         {/* state i got it from props */}
+        <section className ="button"> 
+        <button onClick={
+                () => {
+                    confirmDelete(foodtable.id) 
+                }}>Delete
+        </button>
         <button> 
         <Link 
         to= {{pathname:`/foodtables/edit/${foodtable.id}`,
         // state:{choosentable:foodtable}
-        }}> 
-        Edit </Link> </button>
+        }}> Edit </Link> </button>
+        </section>
         
-        <button onClick={
-                () => {
-                    confirmDelete(foodtable.id) 
-                }
-            }>
-                Delete
-        </button>
     </div>
    
 ) }

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react"
 import { Foodtable } from "../foodTabless/Foodtable"
 
-//This module is responsible for all methods for fetching foodtables from server
+//This module is responsible for all methods for fetching events from server
 export const EventContext = React.createContext()
 
 export const EventsProvider = (props) =>{
     const[events, setEvents] = useState([])
 
- //method to get foodtabless from server
+ //method to get eventss from server
     const getEvents = () =>{
         return fetch("http://localhost:8000/events",{
             headers: {
@@ -18,7 +18,7 @@ export const EventsProvider = (props) =>{
         .then(setEvents)
     }
 
-    //method to get foodtables by the id from server
+    //method to get events by the id from server
     const getSingleEvents = (id) =>{
         return fetch (`http://localhost:8000/events/${id}`, {
             headers: {
@@ -29,7 +29,7 @@ export const EventsProvider = (props) =>{
         .then(setEvents)
     }
 
-     //method to get foodtabless by the user id that created the foodtables from server
+     //method to get eventss by the user id that created the events from server
     const getEventsByUserId = (userId) => {
         userId = localStorage.getItem("event_user_id")
         return fetch(`http://localhost:8000/events?user_id=${userId}`, {
@@ -41,7 +41,7 @@ export const EventsProvider = (props) =>{
           .then(setEvents)
       }
 
-       //method to edit foodtabless on the server
+       //method to edit eventss on the server
     const updateEvent = (event) =>{
         return fetch(`http://localhost:8000/events/${event.id}`, {
             method: "PUT",
@@ -53,7 +53,7 @@ export const EventsProvider = (props) =>{
         }).then(getEvents)
       }
  
-        //method to create a foodtables to add to the server
+        //method to create a events to add to the server
       const addEvent = (event) => {
         return fetch("http://localhost:8000/events",{
         
@@ -66,7 +66,7 @@ export const EventsProvider = (props) =>{
         }).then(getEvents)
       }
 
-       //method to delete foodtables from server
+       //method to delete events from server
       const deleteEvent = (id) => {
         return fetch(`http://localhost:8000/events/${id}`, {
           method: "DELETE",
@@ -77,10 +77,11 @@ export const EventsProvider = (props) =>{
       }
 
       // method to add foodplanner to events
-      const addfoodplanner = (EventsId,FoodtableId) => {
+      const addfoodplanner = (EventsId, FoodtableId) => {
+        // LHS should match DB Table
         const foodObj = {
-           Events_id : EventsId,
-           foodtable_id : FoodtableId
+          events_id : EventsId,
+          foodTable_id :FoodtableId
         }
         return fetch (`http://localhost:8000/events/${EventsId}/foodplanner`,{
           method: 'POST',
@@ -90,7 +91,7 @@ export const EventsProvider = (props) =>{
             },
             body: JSON.stringify(foodObj)
         })
-        .then(getSingleEvents(EventsId))
+        .then(response => response.json())
       }
       
       // method to delete foodplanner from events

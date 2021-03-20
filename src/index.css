@@ -5,9 +5,39 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border-radius: 15px 15px;
+  margin: 55% 45%;
+  padding: 15px 7px;
+ }
+
+
+body, button, input, select, textarea {
+  color: #404040;
+  font-family: "Comfortaa", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Patua One", serif;
+  letter-spacing: 2px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background: rgb(140, 243, 212);
 }
+
+#root{
+	background-color: rgb(223, 175, 235);
+	 border-radius: 10px 10px;
+	margin: 3em;
+	padding: 3em;
+  }
+
+
+
+

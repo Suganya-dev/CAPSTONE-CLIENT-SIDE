@@ -1,16 +1,17 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
-// import Logo from "./event.jpeg"
+// import Logo from "../Logo/Bigevents.png"
 
 export const NavBar = () => {
   const history = useHistory()
 
   return (
     <ul className="navbar">
-      <li className="navbar__item">
-        {/* <img className="navbar__logo" src={Logo} /> */}
-      </li>
+      {/* <li className="navbar__item">
+        <img className="navbar__logo" 
+        src={Logo} alt="img" width="200" height ="200"></img> 
+      </li> */}
 
       <li className="navbar__item">
         <Link className="navbar__link" to="/events">
@@ -38,8 +39,13 @@ export const NavBar = () => {
           Users
         </Link>
       </li>
+      {/* <li className="navbar__item">
+        <Link className="navbar__link" to="/users">
+          Log out
+        </Link>
+      </li> */}
       {localStorage.getItem("event_user_id") !== null ? (
-        <li className="nav-item">
+        <li className="navbar__item">
           <button
             className="nav-link fakeLink"
             onClick={() => {
@@ -52,12 +58,12 @@ export const NavBar = () => {
         </li>
       ) : (
         <>
-          <li className="nav-item">
+          <li className="navbar__item">
             <Link className="nav-link" to="/login">
               Login
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="navbar__item">
             <Link className="nav-link" to="/register">
               Register
             </Link>

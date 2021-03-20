@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { FoodtypeContext } from "../foodTable/FoodProvider"
 import { useHistory } from "react-router-dom"
+import "./Foodtypes.css"
 
 // component responsible for rendering a single foodtype
 
@@ -19,6 +20,7 @@ export const Foodtype = ({foodtypes}) =>{
     <div className = "foodtypes__label">
         {foodtypes.label}
     </div>
+    <section className ="button"> 
     <button onClick ={
         () => {
             confirmDelete(foodtypes.id)
@@ -31,6 +33,7 @@ export const Foodtype = ({foodtypes}) =>{
     }} >
         Edit
     </button>
+    </section>
     </section>
     )}
 
