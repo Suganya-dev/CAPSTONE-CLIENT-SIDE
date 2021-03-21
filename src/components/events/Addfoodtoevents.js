@@ -19,6 +19,9 @@ export const AddfoodtoEvents = (props) => {
     return(
         <>
             <div>
+
+            <Link  to={{
+                pathname: "/events"}}> Back to Events </Link>
                 {
                 foodtables.map(t=>{
                         return <p> 

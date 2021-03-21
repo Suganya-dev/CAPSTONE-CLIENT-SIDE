@@ -21,8 +21,8 @@ export const Foodtable = ({foodtable}) => {
     return(
     
     <div className ="foodtables">
-        <div>   label: {foodtable.label} </div>
-        <div> description: {foodtable.description} </div>
+        <div>   label: <b>{foodtable.label} </b> </div>
+        <div> description: <b> {foodtable.description} </b> </div>
         <div> Label: {foodtable.foodType.label} </div>
   
         {/* instead of button ,used link */}

@@ -13,6 +13,8 @@ import {EventsProvider} from "./events/EventsProvider"
 import {EventsList} from "./events/EventsList"
 import {EventForm} from "./events/EventsForm"
 import {AddfoodtoEvents} from "./events/Addfoodtoevents"
+import {UserProvider} from "./users/Userprovider"
+import {UserList} from "./users/UserList"
 
 
 
@@ -107,6 +109,14 @@ export const ApplicationViews = () => {
                 </FoodTableProvider>
                 </CategoryProvider>
                 </EventsProvider>
+
+                <UserProvider>
+                  <Route
+                  exact
+                  path = "/users"
+                  render = {(props) => < UserList {...props} /> }
+                  />
+                </UserProvider>
 
       </main>
   </>
