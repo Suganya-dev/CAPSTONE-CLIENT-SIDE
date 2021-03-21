@@ -4,6 +4,7 @@ export const UserContext = React.createContext()
 
 export const UserProvider = (props) =>{
     const[users,setUsers] = useState([])
+    const[user, setUser] = useState({user:{}})
 
     const getAllUsers = () => {
         return fetch("http://localhost:8000/users",{
@@ -22,10 +23,11 @@ export const UserProvider = (props) =>{
             }
             })
             .then((res) => res.json())
+            .then(setUser)
     }
 
     return(
-        <UserContext.Provider value = {{ users,getAllUsers,getSingleUsers}}>
+        <UserContext.Provider value = {{ user,users,getAllUsers,getSingleUsers}}>
             {props.children}
         </UserContext.Provider>
     )}

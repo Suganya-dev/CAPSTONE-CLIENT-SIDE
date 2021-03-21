@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "./Userprovider"
-import {Usercard} from "./Usercard"
+import {UserCard} from "./UserCard"
 
 export const UserList = (props) =>{
     // console.log(props)
@@ -17,7 +17,7 @@ export const UserList = (props) =>{
         <h2>Users List</h2>
         
             {users.map( U => {
-               return <Usercard key={U.id}
+               return <UserCard key={U.id}
                usercard = {U} props={props}
                />
             })}
