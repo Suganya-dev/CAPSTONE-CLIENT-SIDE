@@ -1,13 +1,16 @@
-import React, {useContext,useEffect} from "react"
+import React, {useContext,useEffect, useState} from "react"
 import {FoodTableContext} from "../foodTabless/FoodtableProvider"
 import {EventContext} from "./EventsProvider"
 import { Link } from "react-router-dom"
 
 export const AddfoodtoEvents = (props) => {
-    const {addfoodplanner,getEvents} = useContext(EventContext)
+    const {addfoodplanner,getEvents,events} = useContext(EventContext)
     const {foodtables,getFoodtable} = useContext(FoodTableContext)
 
+    const[event,setEvent] = useState([])
+
     useEffect(()=>{
+        getEvents()
         getFoodtable()
     },[]) 
 
@@ -15,34 +18,23 @@ export const AddfoodtoEvents = (props) => {
     console.log(foodtables)
     return(
         <>
-                <div>
-                    {
-                        foodtables.map(t=>{
+            <div>
+                {
+                foodtables.map(t=>{
+                        return <p> 
+                                {t.label}
+                                <button
+                    //   eventsId is not defined so i used props.match.params
+                        onClick={()=>{addfoodplanner(+(props.match.params.eventsId),+(t.id));
+                        getEvents();}} >
+                            Add  Food To Event
+                            </button> 
+                            </p>
                             
-                            return <p> 
-                                    {t.label}
-                                 <button
-                          onClick={()=>{addfoodplanner(+(props.match.params.eventsId),+(t.id));
-                            getEvents();}} >
-                                Add  Food To Event
-                              </button> 
-                              </p>
-                             
-                            })}
-                        
-                </div>
+                        })}
+                    
+            </div>
            </>
            )
         }
         
-        //   <div>
-        //   <button 
-        //   eventsId is not defined so i used props.match.params
-        //    Add  Food To Event 
-        //   </button></div>
-        {/* <button> 
-        <Link  to={{
-                pathname:"/events"}} >Back To Events
-        </Link>
-        </button>
-       */}
