@@ -16,7 +16,7 @@ export const Category = ({ category }) => {
     }
 
     return (<section className="category">
-        <div className="category__label">{category.label}</div>
+        <div className="category__label"> <b> {category.label} </b></div>
         <button onClick={
                 () => {
                     confirmDelete(category.id) 

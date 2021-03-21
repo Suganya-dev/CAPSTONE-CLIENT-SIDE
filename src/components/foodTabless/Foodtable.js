@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./Foodtable.css"
 
 // component responsible for rendering a single foodtable
-
+// {foodtable} is obj destructuring , it helps to extract elements from foodtable
 export const Foodtable = ({foodtable}) => {
 
     const { removeFoodtable } = useContext(FoodTableContext)
@@ -21,8 +21,8 @@ export const Foodtable = ({foodtable}) => {
     return(
     
     <div className ="foodtables">
-        <div>   label: {foodtable.label} </div>
-        <div> description: {foodtable.description} </div>
+        <div>   label: <b>{foodtable.label} </b> </div>
+        <div> description: <b> {foodtable.description} </b> </div>
         <div> Label: {foodtable.foodType.label} </div>
   
         {/* instead of button ,used link */}
