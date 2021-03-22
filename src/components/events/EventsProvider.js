@@ -97,22 +97,34 @@ export const EventsProvider = (props) =>{
       // method to delete foodplanner from events
 
       const deletefoodplanner = (EventsId,FoodtableId) => {
+        const foodObj = {
+          events_id : EventsId,
+          foodTable_id :FoodtableId
+        }
         return fetch (`http://localhost:8000/events/${EventsId}/foodplanner`,{
           method: 'DELETE',
           headers: {
             "Content-Type": "application/json",
             Authorization : `Token ${localStorage.getItem("event_user_id")}`,
             },
-            body: JSON.stringify(FoodtableId)
+            body: JSON.stringify(foodObj)
           })
-          .then(getSingleEvents(EventsId))
+          .then(response => response.json())
         }
+
+        const getFoodPlannerbyEventId = (EventsId) => {
+          return fetch(`http://localhost:8000/events/${EventsId}/foodplanner`,{
+            headers: {
+              "Authorization": `Token ${localStorage.getItem("event_user_id")}`, 
+          }})
+          .then((res) => res.json())
+         
+      } 
+        
         
       return(
           <EventContext.Provider value = {{
-            events,getEvents,getSingleEvents,addfoodplanner,deletefoodplanner,getEventsByUserId,updateEvent,addEvent,deleteEvent
-
-          }}>
-              {props.children}
+            events,getEvents,getSingleEvents,getFoodPlannerbyEventId,addfoodplanner,deletefoodplanner,getEventsByUserId,updateEvent,addEvent,deleteEvent
+          }}>{props.children}
           </EventContext.Provider>
       )}
