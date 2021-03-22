@@ -107,12 +107,20 @@ export const EventsProvider = (props) =>{
           })
           .then(getSingleEvents(EventsId))
         }
+
+        const getFoodPlannerbyEventId = (EventsId) => {
+          return fetch(`http://localhost:8000/events/${EventsId}/foodplanner`,{
+            headers: {
+              "Authorization": `Token ${localStorage.getItem("event_user_id")}`, 
+          }})
+          .then((res) => res.json())
+          // .then(setEvents)
+      } 
+        
         
       return(
           <EventContext.Provider value = {{
-            events,getEvents,getSingleEvents,addfoodplanner,deletefoodplanner,getEventsByUserId,updateEvent,addEvent,deleteEvent
-
-          }}>
-              {props.children}
+            events,getEvents,getSingleEvents,getFoodPlannerbyEventId,addfoodplanner,deletefoodplanner,getEventsByUserId,updateEvent,addEvent,deleteEvent
+          }}>{props.children}
           </EventContext.Provider>
       )}

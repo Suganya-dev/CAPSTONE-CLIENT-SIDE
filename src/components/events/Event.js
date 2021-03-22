@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link,useHistory } from "react-router-dom"
 import {EventContext} from "./EventsProvider"
 import './Events.css'
+import { FoodTableContext, FoodTableProvider } from "../foodTabless/FoodtableProvider"
 
 export const Event = ({event,props}) => {
-    const {deleteEvent} = useContext(EventContext)
+    const {deleteEvent,getFoodPlannerbyEventId} = useContext(EventContext)
+    const {getSinglefoodTable,foodtable} = useContext(FoodTableContext)
     const history = useHistory()
 
     const ConfirmDelete = (id) =>{
@@ -13,9 +15,20 @@ export const Event = ({event,props}) => {
             deleteEvent(id)
         }}
 
-        console.log(props)
+        useEffect(() => {
+            event.foodtable =[]
+            getFoodPlannerbyEventId(event.id)
+            .then(res => {
+                res.map(fP =>{
+                    getSinglefoodTable(fP.foodTable.id)
+                    event.foodtable.push(foodtable)
+                })
+            })
+        },[])
 
-    if(localStorage.getItem("event_user_id")){
+        // console.log(props)
+
+    if(localStorage.getItem("event_user_id")&&event.foodtable){
 
         return(
 
@@ -28,6 +41,9 @@ export const Event = ({event,props}) => {
                 <div>content:{event.content}</div>
                 <div>approved:True</div>
                 <div>category:{event.category.label}</div>
+                {/* just like ternary */}
+                {/* {event.foodtable[0] && <div>Foodtypes:{event.foodtable[0].label}</div>} */}
+                
                 <button> 
                 <Link to={{
                     pathname: `/events/edit/${event.id}`,
@@ -40,7 +56,8 @@ export const Event = ({event,props}) => {
                 }}>Delete Events </button>
             </div>
             
-        )}else{
+        )}
+        else{
         return(
             <div>
                 You haven't made any Events.
