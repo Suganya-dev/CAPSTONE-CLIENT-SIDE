@@ -65,10 +65,5 @@ export const AddfoodtoEvents = (props) => {
         }
 
 
-        // <button
-        // //   eventsId is not defined so i used props.match.params
-        //     onClick={()=>{addfoodplanner(+(props.match.params.eventsId),+(t.id));
-        //     getEvents();}} >
-        //         Add  Food To Event
-        //         </button> 
+
         
