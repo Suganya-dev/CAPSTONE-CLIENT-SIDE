@@ -26,6 +26,16 @@ export const FoodTableProvider = (props) =>{
           .then(setFoodtable)
       }
 
+    const getOnefoodTable= (id) => {
+        return fetch(`http://localhost:8000/foodtables/${id}`, {
+          headers: {
+            "Authorization": `Token ${localStorage.getItem("event_user_id")}`,
+          },
+        })
+          .then((res) => res.json())
+        
+      }
+
 
     const addFoodtable = (foodtable) => {
         return fetch("http://localhost:8000/foodtables",{
@@ -63,7 +73,7 @@ export const FoodTableProvider = (props) =>{
     
     return (
         <FoodTableContext.Provider value = {{
-            foodtable,foodtables, getFoodtable,getSinglefoodTable,addFoodtable,removeFoodtable,updateFoodtable
+            foodtable,foodtables, getFoodtable,getOnefoodTable,getSinglefoodTable,addFoodtable,removeFoodtable,updateFoodtable
         }}>
             {props.children}
         </FoodTableContext.Provider>

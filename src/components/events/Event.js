@@ -6,7 +6,7 @@ import { FoodTableContext, FoodTableProvider } from "../foodTabless/FoodtablePro
 
 export const Event = ({event,props}) => {
     const {deleteEvent,getFoodPlannerbyEventId} = useContext(EventContext)
-    const {getSinglefoodTable,foodtable} = useContext(FoodTableContext)
+    const {getOnefoodTable,foodtabAle} = useContext(FoodTableContext)
     const history = useHistory()
 
     const ConfirmDelete = (id) =>{
@@ -19,20 +19,23 @@ export const Event = ({event,props}) => {
             event.foodtable =[]
             getFoodPlannerbyEventId(event.id)
             .then(res => {
+                console.log(res)
                 res.map(fP =>{
-                    getSinglefoodTable(fP.foodTable.id)
-                    event.foodtable.push(foodtable)
+                    getOnefoodTable(fP.foodTable.id)
+                    .then(fT => {
+                        event.foodtable.push(fT)
+                        })
                 })
             })
         },[])
 
         // console.log(props)
+        // &&event.foodtable)
 
-    if(localStorage.getItem("event_user_id")&&event.foodtable){
-
+    if(localStorage.getItem("event_user_id")){
+        // console.log(event)
         return(
-
-            <div className ="Events">
+                <div className ="Events">
                 <div>eventUser:{event.eventUser.user.id}</div>
                 <div>eventName:{event.eventName}</div>
                 <div>eventdate:{event.eventdate}</div>
@@ -41,9 +44,13 @@ export const Event = ({event,props}) => {
                 <div>content:{event.content}</div>
                 <div>approved:True</div>
                 <div>category:{event.category.label}</div>
-                {/* just like ternary */}
-                {/* {event.foodtable[0] && <div>Foodtypes:{event.foodtable[0].label}</div>} */}
-                
+                {/* just like ternary conditional rendering */}
+                {/* {event.foodtable && <div>Foodtypes:{event.foodtable.label}</div>} */} 
+                {event.foodtable && event.foodtable.map(fT => {
+                    // console.log(fT)
+                    return <div>Foodtypes:{fT.label}</div>
+                })} 
+                 
                 <button> 
                 <Link to={{
                     pathname: `/events/edit/${event.id}`,
