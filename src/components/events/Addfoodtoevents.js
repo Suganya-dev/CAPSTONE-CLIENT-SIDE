@@ -4,15 +4,16 @@ import {EventContext} from "./EventsProvider"
 import { Link } from "react-router-dom"
 
 export const AddfoodtoEvents = (props) => {
-    const {addfoodplanner,getEvents,deletefoodplanner,getFoodPlannerbyEventId} = useContext(EventContext)
+    const {addfoodplanner,getEvents,deletefoodplanner,getFoodPlannerbyEventId,deleteFoodPlannerbyEventId} = useContext(EventContext)
     const {foodtables,getFoodtable} = useContext(FoodTableContext)
-
-    // const[event,setEvent] = useState({})
+    console.log(props)
+  
 
     useEffect(()=>{
         getEvents()
         getFoodtable()
     },[]) 
+    // const events_id = props.match.params.eventsId
 
      const addfoods = (events_id,foodTable_id) => {
          const d = window.confirm("Would you like to add this Foodtype?")
@@ -28,6 +29,9 @@ export const AddfoodtoEvents = (props) => {
         const d = window.confirm("would you like to delete this?")
         if(d=== true){
             deletefoodplanner(events_id,foodTable_id)
+            .then(() =>{
+                getFoodPlannerbyEventId(events_id)
+            })
         }}
     
     console.log(foodtables)
@@ -56,7 +60,6 @@ export const AddfoodtoEvents = (props) => {
                                 deletefoods(+(props.match.params.eventsId),t.id) 
                           }}>Delete Food from Events </button>
                             </p>
-                            
                         })}
                     
             </div>
@@ -65,10 +68,5 @@ export const AddfoodtoEvents = (props) => {
         }
 
 
-        // <button
-        // //   eventsId is not defined so i used props.match.params
-        //     onClick={()=>{addfoodplanner(+(props.match.params.eventsId),+(t.id));
-        //     getEvents();}} >
-        //         Add  Food To Event
-        //         </button> 
+
         

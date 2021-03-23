@@ -46,10 +46,10 @@ export const Event = ({event,props}) => {
                 <div>category:{event.category.label}</div>
                 {/* just like ternary conditional rendering */}
                 {/* {event.foodtable && <div>Foodtypes:{event.foodtable.label}</div>} */} 
-                {event.foodtable && event.foodtable.map(fT => {
-                    // console.log(fT)
-                    return <div>Foodtypes:{fT.label}</div>
-                })} 
+                <div>Foodtypes:
+                {event.foodplanners && event.foodplanners.map(fT => {
+                   return <div> {fT.foodTable.label}</div>
+                })} </div>
                  
                 <button> 
                 <Link to={{
