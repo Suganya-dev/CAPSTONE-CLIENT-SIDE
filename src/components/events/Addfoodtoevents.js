@@ -4,7 +4,7 @@ import {EventContext} from "./EventsProvider"
 import { Link } from "react-router-dom"
 
 export const AddfoodtoEvents = (props) => {
-    const {addfoodplanner,getEvents,deletefoodplanner,getFoodPlannerbyEventId} = useContext(EventContext)
+    const {addfoodplanner,getEvents,deletefoodplanner,getFoodPlannerbyEventId,deleteFoodPlannerbyEventId} = useContext(EventContext)
     const {foodtables,getFoodtable} = useContext(FoodTableContext)
 
     // const[event,setEvent] = useState({})
@@ -28,6 +28,9 @@ export const AddfoodtoEvents = (props) => {
         const d = window.confirm("would you like to delete this?")
         if(d=== true){
             deletefoodplanner(events_id,foodTable_id)
+            .then(() =>{
+                deleteFoodPlannerbyEventId(events_id)
+            })
         }}
     
     console.log(foodtables)
@@ -56,7 +59,6 @@ export const AddfoodtoEvents = (props) => {
                                 deletefoods(+(props.match.params.eventsId),t.id) 
                           }}>Delete Food from Events </button>
                             </p>
-                            
                         })}
                     
             </div>
