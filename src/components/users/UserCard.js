@@ -1,6 +1,7 @@
 import React, { useContext,useEffect } from "react"
 import { UserContext } from "../users/Userprovider"
 import { Link, useHistory } from "react-router-dom"
+import "./User.css"
 
 // i am passing attributes from UserList {props,usercard}
 export const UserCard = ({props,usercard}) => {

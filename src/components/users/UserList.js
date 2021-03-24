@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "./Userprovider"
 import {UserCard} from "./UserCard"
+import "./User.css"
 
 export const UserList = (props) =>{
     // console.log(props)
