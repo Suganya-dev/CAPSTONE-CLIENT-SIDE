@@ -1,4 +1,4 @@
-.Events{
+.users{
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
@@ -8,24 +8,13 @@
     background:rgb(165, 246, 222);
     background-color: rgb(151, 221, 245)210, 228);
 }
-.EventForm{
+
+.Users{
     border: 2px solid blue;
     margin: 2em;
     padding: 2em;
     font-size:medium;
     font-weight: bold;
     font-style: italic;
-    background:rgb(116, 248, 209);
-  }
-
-
-
-.button{
-    padding: 5px 19px;
-    text-align: justify;
-    text-decoration-color: rgb(241, 161, 161);
-    display: inline-block;
-    font-size: 20px;
-    margin: 2px 4px;
-    cursor: pointer;
+    background:rgb(187, 238, 222);
   }

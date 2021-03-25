@@ -16,7 +16,9 @@ export const EventsList =(props) =>{
             <h2>  “To achieve great things, two things are needed: a plan, and not quite enough time.” 
                            – Leonard Bernstein</h2>
             <h3>MY EVENTS</h3>
+            <button> 
             <Link to="/events/create">Create your Event</Link>
+            </button>
             {
               events.map(E => <Event key={E.id} event={E} props ={props}/>)  
             }
